@@ -4,8 +4,8 @@ gimp file-rom-bin plugin
 GIMP plugin for reading, writing and converting ROM images and tile files. Useful in emulation ROM modding, hacks and extracting/inserting artwork.
 
 Download compiled executables here: 
- * [Linux GIMP 2.8+](/bin/linux)
- * [Windows GIMP 2.10.12+](/bin/windows)
+ * [Linux GIMP 3.x](/bin/linux)
+ * [Windows GIMP 3.x+](/bin/windows)
 
 Note: `master` targets **GIMP 3.x**
 

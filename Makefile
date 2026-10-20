@@ -35,9 +35,20 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 $(OBJ_DIR):
 	test -d $(OBJ_DIR) || mkdir -p $(OBJ_DIR)
 
+# Windows cross build (GIMP 3.x, 64 bit). Needs a mingw-w64 toolchain on the
+# host (sudo apt install mingw-w64); everything else - the GIMP libgimp*.def
+# export lists and the MSYS2 glib/gtk/GEGL/babl dev packages - is fetched
+# automatically into ~/.cache/gimp-rom-bin-winbuild on first run.
+windows:
+	./build/windows/cross-build.sh
+
+windows32:
+	ARCH=i686 ./build/windows/cross-build.sh
+
 clean:
 	rm -rf $(OBJ_DIR)
 	rm -f $(TARGET)
+	rm -f file-rom-bin.exe
 
 # GIMP 3 wants every plug-in binary in its own sub directory of plug-ins/
 install: $(TARGET)
@@ -47,4 +58,4 @@ install: $(TARGET)
 uninstall:
 	rm -rf $(GIMP_PLUGIN_DIR)/$(TARGET)
 
-.PHONY: clean install uninstall
+.PHONY: clean install uninstall windows windows32

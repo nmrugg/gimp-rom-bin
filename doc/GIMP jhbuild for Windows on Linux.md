@@ -1,4 +1,12 @@
 Cross compiling GIMP stable for Windows (mingw32) on Debian Linux 8 in a VM
+
+> **Note (GIMP 3.x):** this guide is for the GIMP 2.x branch of the plug-in and
+> is kept for reference. For GIMP 3.x, run `make windows` - it cross builds with
+> plain mingw-w64, pulling GIMP's own `libgimp*.def` files for the import libs and
+> MSYS2's prebuilt glib/gtk3/GEGL/babl packages for everything else. GIMP's own
+> Windows build moved from jhbuild to MSYS2 as well
+> (`build/windows/1_build-deps-msys2.ps1` in the GIMP sources).
+
 ===========
 
 Many of the how-to docs for cross compiling GIMP binaries for Windows on a Linux host appear to be out of date or broken (crossroad, MinGW-w64). 

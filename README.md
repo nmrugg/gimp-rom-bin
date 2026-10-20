@@ -60,10 +60,33 @@ Then restart GIMP so the new plug-in is picked up.
 
 Plug-in folder locations:
  Linux: ~/.config/GIMP/3.2/plug-ins/<plugin-name>/   (GIMP 3.x sub directory per plug-in)
- Windows: C:\Program Files\GIMP 3\lib\gimp\3.0\plug-ins
+ Windows: C:\Program Files\GIMP 3\lib\gimp\3.0\plug-ins\<plugin-name>\file-rom-bin.exe
 
 ```
-Guide for [Cross-compiling to Windows on Linux](https://github.com/bbbbbr/gimp-rom-bin/blob/master/doc/GIMP%20jhbuild%20for%20Windows%20on%20Linux.md)
+
+## Building the Windows binary (cross compile from Linux)
+
+```
+sudo apt install mingw-w64          # the only thing needed from the host
+make windows                        # -> ./file-rom-bin.exe   (64 bit)
+```
+
+`make windows` runs `build/windows/cross-build.sh`, which fetches everything
+else by itself into `~/.cache/gimp-rom-bin-winbuild/`:
+
+* the GIMP source tarball, used for the libgimp headers and - importantly -
+  GIMP's own `libgimp*.def` export lists, which get turned into Windows import
+  libs with `dlltool`
+* the MSYS2 prebuilt Windows dev packages for the GIMP dependency stack
+  (glib, gtk3, GEGL, babl, cairo, pango, ...), same stack the official GIMP
+  Windows builds use, see `build/windows/1_build-deps-msys2.ps1` in the GIMP
+  sources
+
+`make windows32` builds a 32 bit binary the same way (GIMP 3 for Windows is
+64 bit only; the 32 bit build exists just for testing under Wine).
+
+The old jhbuild based guide, [Cross compiling GIMP for Windows on Linux](/doc/GIMP%20jhbuild%20for%20Windows%20on%20Linux.md),
+is kept for the GIMP 2.x branch of this plug-in.
 
 ## Batch / scripting (GIMP 3)
 

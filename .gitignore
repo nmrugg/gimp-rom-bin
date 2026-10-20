@@ -1,4 +1,5 @@
 /file-rom-bin
+/file-rom-bin.exe
 *.zip
 *.7z
 obj/

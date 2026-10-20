@@ -1,0 +1,63 @@
+/* Version resource for the Windows build of the plug-in.
+ * Modeled on GIMP's own build/windows/gimp-plug-ins.rc.in, but self
+ * contained so the plug-in can be built outside of a GIMP source tree.
+ *
+ * The version numbers are passed in by the Makefile:
+ *   windres --define PLUGIN_VERSION_MAJ=... etc.
+ */
+#include <winver.h>
+
+#define _QUOTE(x) #x
+#define QUOTE(x)  _QUOTE(x)
+
+#ifndef PLUGIN_VERSION_MAJ
+#define PLUGIN_VERSION_MAJ 0
+#endif
+#ifndef PLUGIN_VERSION_MIN
+#define PLUGIN_VERSION_MIN 3
+#endif
+#ifndef PLUGIN_VERSION_MICRO
+#define PLUGIN_VERSION_MICRO 0
+#endif
+
+#define VER_FILEVERSION_STR \
+    QUOTE(PLUGIN_VERSION_MAJ) "." QUOTE(PLUGIN_VERSION_MIN) "." QUOTE(PLUGIN_VERSION_MICRO) ".0\0"
+
+#define VER_COMPANYNAME_STR      "the gimp-rom-bin project"
+#define VER_FILEDESCRIPTION_STR  "GIMP ROM bin image Plug-In"
+#define VER_INTERNALNAME_STR     "file-rom-bin"
+#define VER_ORIGINALFILENAME_STR "file-rom-bin.exe"
+#define VER_LEGALCOPYRIGHT_STR   "GPLv3"
+#define VER_PRODUCTNAME_STR      "gimp-rom-bin"
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION     PLUGIN_VERSION_MAJ,PLUGIN_VERSION_MIN,PLUGIN_VERSION_MICRO,0
+PRODUCTVERSION  PLUGIN_VERSION_MAJ,PLUGIN_VERSION_MIN,PLUGIN_VERSION_MICRO,0
+FILEFLAGSMASK   VS_FFI_FILEFLAGSMASK
+FILEFLAGS       0
+FILEOS          VOS__WINDOWS32
+FILETYPE        VFT_APP
+FILESUBTYPE     VFT2_UNKNOWN
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName",      VER_COMPANYNAME_STR
+            VALUE "FileDescription",  VER_FILEDESCRIPTION_STR
+            VALUE "FileVersion",      VER_FILEVERSION_STR
+            VALUE "InternalName",     VER_INTERNALNAME_STR
+            VALUE "LegalCopyright",   VER_LEGALCOPYRIGHT_STR
+            VALUE "OriginalFilename", VER_ORIGINALFILENAME_STR
+            VALUE "ProductName",      VER_PRODUCTNAME_STR
+            VALUE "ProductVersion",   VER_FILEVERSION_STR
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#include <winuser.h>
+1 RT_MANIFEST "file-rom-bin.manifest"

@@ -16,8 +16,6 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 =======================================================================*/
 
-// TODO: rename to settings-dialog.c/h
-
 #ifndef ROM_BIN_EXPORT_DIALOG_HEADER
 #define ROM_BIN_EXPORT_DIALOG_HEADER
 

@@ -27,14 +27,10 @@
 #include <libgimp/gimpui.h>
 
 //
-// The GIMP 2.x version of this dialog hand built a GtkDialog with a combo
-// box and read the selection back by matching the combo's text. GIMP 3
-// generates the widgets straight from the procedure's arguments, so the
-// format picker is now a "choice" argument on the procedure itself.
-//
-// That also means the last used format is remembered by GIMP between
-// invocations, and that the dialog no longer needs its own main loop
-// (the old gtk_main_quit() calls were a known source of warnings).
+// Generate the widgets straight from the procedure's arguments,
+// so the format picker is a "choice" argument on the procedure itself.
+// That means the last used format is remembered by GIMP between invocations,
+// and that the dialog no longer needs its own main loop.
 //
 gboolean rom_bin_settings_dialog (GimpProcedure       * procedure,
                                   GimpProcedureConfig * config,
